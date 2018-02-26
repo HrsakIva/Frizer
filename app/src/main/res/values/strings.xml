@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Frizer</string>
+    <string name="prijava">Prijava</string>
+    <string name="saloniUBlizini">Traži u blizini</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+</resources>

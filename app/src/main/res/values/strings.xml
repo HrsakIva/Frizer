@@ -4,4 +4,6 @@
     <string name="saloniUBlizini">Traži u blizini</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="login">Ulogiravanje</string>
+    <string name="registr">Registracija</string>
 </resources>

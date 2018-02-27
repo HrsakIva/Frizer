@@ -6,4 +6,5 @@
     <string name="close">Close</string>
     <string name="login">Ulogiravanje</string>
     <string name="registr">Registracija</string>
+    <string name="btOpen">Otvori</string>
 </resources>

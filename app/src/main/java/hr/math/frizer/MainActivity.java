@@ -1,6 +1,7 @@
 package hr.math.frizer;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -33,6 +40,74 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //--- Creating database ---
+        DBAdapter db = new DBAdapter(this);
+
+        //---add a salon---
+        /*db.open();
+        long id = db.insertSalon("Fluid", "Malešnica 54, Zagreb", "fsfluid@gmail.com", "0912345555", "8-20","0");
+        id = db.insertSalon("Frizerski salon W", "Taborska 31, Zagreb", "frizerskisalonw@yahoo.com", "0912345444", "8-20","0");
+
+        db.close();*/
+
+
+        //--get all salons---
+        db.open();
+        Cursor c = db.getAllSalons();
+        DisplaySalon(c);
+        db.close();
+    }
+
+    public void DisplaySalon(Cursor c)
+    {
+        LinearLayout ll = (LinearLayout) findViewById(R.id.linearlayoutMain);
+
+        if (c.moveToFirst()) {
+            do {
+
+                TextView tvName = new TextView(this);
+                tvName.setText(c.getString(1));
+                tvName.setTextSize(20);
+                ll.addView(tvName);
+
+                RatingBar rating = new RatingBar(this, null, android.R.attr.ratingBarStyleSmall);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                rating.setLayoutParams(layoutParams);
+                rating.setNumStars(5);
+                rating.setStepSize((float) 0.1);
+                rating.setIsIndicator(true);
+                rating.setRating(Float.parseFloat(c.getString(6)));
+                ll.addView(rating);
+
+                TextView tvAddress = new TextView(this);
+                tvAddress.setText(c.getString(2));
+                ll.addView(tvAddress);
+
+                TextView tvTelNumber = new TextView(this);
+                tvTelNumber.setText(c.getString(4));
+                ll.addView(tvTelNumber);
+
+                Button btOpen = new Button(this);
+                btOpen.setText(R.string.btOpen);
+                ll.addView(btOpen);
+
+                btOpen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(MainActivity.this, SalonActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+                /*Toast.makeText(this,
+                        "id: " + c.getString(0) + "\n" +
+                                "Name: " + c.getString(1) + "\n" +
+                                "Email:  " + c.getString(2),
+                        Toast.LENGTH_LONG).show();*/
+            } while (c.moveToNext());
+        }
+
     }
 
     @Override

@@ -20,10 +20,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //---add a contact---
-        db.open();
+        /*db.open();
         long id = db.insertUser("Wei-Meng Lee", "weimenglee@learn2develop.net");
         id = db.insertUser("Mary Jackson", "mary@jackson.com");
-        db.close();
+        db.close();*/
 
 
 

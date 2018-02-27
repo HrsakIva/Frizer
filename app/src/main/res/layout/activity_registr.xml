@@ -4,50 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context="hr.math.frizer.RegistrActivity">
 
-    <!-- Copy from here -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-    </LinearLayout>
     <!-- To herel, and paste under -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtRegName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="45dp" />
+        <EditText
+            android:id="@+id/txtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/username"/>
 
-    <EditText
-        android:id="@+id/txtRegPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="104dp" />
+        <EditText
+            android:id="@+id/txtRegPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            tools:layout_editor_absoluteX="74dp"
+            tools:layout_editor_absoluteY="104dp" />
 
+        <EditText
+            android:id="@+id/txtRegName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/name"
+            tools:layout_editor_absoluteX="74dp"
+            tools:layout_editor_absoluteY="45dp" />
 
+        <EditText
+            android:id="@+id/txtRegSurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/surname"
+            tools:layout_editor_absoluteX="74dp"
+            tools:layout_editor_absoluteY="45dp" />
 
-    <Button
-        android:id="@+id/btnSubReg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Potvrdite!"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="159dp" />
+        <EditText
+            android:id="@+id/txtRegTelnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone|number"
+            android:hint="@string/contactNumber"
+            tools:layout_editor_absoluteX="74dp"
+            tools:layout_editor_absoluteY="45dp" />
+
+        <Button
+            android:id="@+id/btnSubReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/registr"
+            android:onClick="registerNewUser"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="159dp" />
 
     </LinearLayout>
 

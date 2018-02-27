@@ -5,6 +5,15 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="login">Ulogiravanje</string>
-    <string name="registr">Registracija</string>
+    <string name="registr">Registriraj se</string>
     <string name="btOpen">Otvori</string>
+    <string name="name">Ime</string>
+    <string name="username">Korisničko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="surname">Prezime</string>
+    <string name="contactNumber">Kontakt broj</string>
+    <string name="userNameTaken">Željeno korisničko ime već je zauzeto. Pokušajte s nekim drugim.</string>
+    <string name="passwordShort">Lozinka mora imati barem 8 znakova!</string>
+    <string name="telNumTaken">Postoji korisnik s ovim brojem mobitela!</string>
+    <string name="loginFailed">Neuspješna prijava! Provjerite korisničko ime i lozinku.</string>
 </resources>

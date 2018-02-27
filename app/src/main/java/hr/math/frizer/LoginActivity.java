@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -17,23 +18,15 @@ public class LoginActivity extends AppCompatActivity {
         // u onCreate
 
         DBAdapter db = new DBAdapter(this);
-
-
-        //---add a contact---
-        /*db.open();
-        long id = db.insertUser("Wei-Meng Lee", "weimenglee@learn2develop.net");
-        id = db.insertUser("Mary Jackson", "mary@jackson.com");
-        db.close();*/
-
-
-
-        //--get all contacts---
+        
+        //--get all users---
         db.open();
         Cursor c = db.getAllUsers();
         if (c.moveToFirst())
         {
             do {
-                DisplayUser(c);
+                Toast.makeText(this, c.getString(1).toString(), Toast.LENGTH_SHORT).show();
+                //DisplayUser(c);
             } while (c.moveToNext());
         }
         db.close();
@@ -41,33 +34,33 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //---get a contact---
-        db.open();
+        /*db.open();
         Cursor cu = db.getUser(2);
         if (cu.moveToFirst())
             DisplayUser(cu);
         else
             Toast.makeText(this, "No user found", Toast.LENGTH_LONG).show();
-        db.close();
+        db.close();*/
 
 
 
         //---update contact---
-        db.open();
+        /*db.open();
         if (db.updateUser(1, "Wei-Meng Lee", "weimenglee@gmail.com"))
             Toast.makeText(this, "Update successful.", Toast.LENGTH_LONG).show();
         else
             Toast.makeText(this, "Update failed.", Toast.LENGTH_LONG).show();
-        db.close();
+        db.close();*/
 
 
 
         //---delete a contact---
-        db.open();
+        /*db.open();
         if (db.deleteUser(1))
             Toast.makeText(this, "Delete successful.", Toast.LENGTH_LONG).show();
         else
             Toast.makeText(this, "Delete failed.", Toast.LENGTH_LONG).show();
-        db.close();
+        db.close();*/
     }
 
 
@@ -79,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this,
                 "id: " + c.getString(0) + "\n" +
                         "Name: " + c.getString(1) + "\n" +
-                        "Email:  " + c.getString(2),
+                        "Phone number:  " + c.getString(2),
                 Toast.LENGTH_LONG).show();
     }
 
@@ -87,6 +80,42 @@ public class LoginActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, RegistrActivity.class);
         startActivity(intent);
+    }
+
+    public boolean checkUserData(Cursor c, String userName, String Password) {
+        if (c.moveToFirst()) {
+            do {
+                if (c.getString(1).equals(userName) && c.getString(2).equals(Password))
+                    return true;
+                //Toast.makeText(this, c.getString(i) + " " + toBeChecked, Toast.LENGTH_SHORT).show();
+            } while (c.moveToNext());
+        }
+        return false;
+    }
+
+    public void login(View v){
+        DBAdapter db = new DBAdapter(this);
+
+        EditText eText = (EditText) findViewById(R.id.txtUserName);
+        String userName = eText.getText().toString();
+
+        eText = (EditText) findViewById(R.id.txtPass);
+        String password = eText.getText().toString();
+
+        db.open();
+        Cursor user = db.getAllUsers();
+        if(checkUserData(user, userName, password)){
+            Toast.makeText(this, "Pozdrav, " + userName + "!", Toast.LENGTH_SHORT).show();
+            db.close();
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        }
+        else{
+            Toast.makeText(this, R.string.loginFailed , Toast.LENGTH_SHORT).show();
+            db.close();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
     }
 
 

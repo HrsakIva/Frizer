@@ -26,9 +26,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="@string/password"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="104dp" />
+            android:hint="@string/password" />
+
+        <EditText
+            android:id="@+id/txtRegPassConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/confirmPassword" />
 
         <EditText
             android:id="@+id/txtRegName"
@@ -36,9 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="@string/name"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="45dp" />
+            android:hint="@string/name" />
 
         <EditText
             android:id="@+id/txtRegSurname"

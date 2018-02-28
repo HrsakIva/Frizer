@@ -1,6 +1,7 @@
 package hr.math.frizer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +31,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*if(getUserName() != null){
+            Toast.makeText(this, R.string.hello + ", " + getUserName(), Toast.LENGTH_SHORT).show();
+        }
+
+        else{
+            Toast.makeText(this, "No one logged in!", Toast.LENGTH_SHORT).show();
+        }*/
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
@@ -39,6 +48,14 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().clear();
+
+        if(getUserName() != null) {
+            navigationView.inflateMenu(R.menu.navigation_menu_loggedin);
+        }
+        else{
+            navigationView.inflateMenu(R.menu.navigation_menu);
+        }
         navigationView.setNavigationItemSelectedListener(this);
 
         //--- Creating database ---
@@ -126,17 +143,30 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_pretrazi) {
-            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
         }
         else if (id == R.id.nav_login) {
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
-
+        else if(id == R.id.nav_logout){
+            SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+            SharedPreferences.Editor editUserInfo = userPref.edit();
+            editUserInfo.remove("username");
+            editUserInfo.apply();
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public String getUserName(){
+        SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String currentUser = userPref.getString("username", null);
+        return currentUser;
     }
 }

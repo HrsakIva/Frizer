@@ -1,6 +1,7 @@
 package hr.math.frizer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,18 +19,18 @@ public class LoginActivity extends AppCompatActivity {
         // u onCreate
 
         DBAdapter db = new DBAdapter(this);
-        
+
         //--get all users---
-        db.open();
+        /*db.open();
         Cursor c = db.getAllUsers();
         if (c.moveToFirst())
         {
             do {
-                Toast.makeText(this, c.getString(1).toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, c.getString(1).toString(), Toast.LENGTH_SHORT).show();
                 //DisplayUser(c);
             } while (c.moveToNext());
         }
-        db.close();
+        db.close();*/
 
 
 
@@ -93,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         return false;
     }
 
-    public void login(View v){
+    public void login(View v) {
         DBAdapter db = new DBAdapter(this);
 
         EditText eText = (EditText) findViewById(R.id.txtUserName);
@@ -104,19 +105,20 @@ public class LoginActivity extends AppCompatActivity {
 
         db.open();
         Cursor user = db.getAllUsers();
-        if(checkUserData(user, userName, password)){
-            Toast.makeText(this, "Pozdrav, " + userName + "!", Toast.LENGTH_SHORT).show();
+        if (checkUserData(user, userName, password)) {
+            Toast.makeText(this, new StringBuilder().append(getText(R.string.hello)).append(", ").append(userName).append("!").toString(), Toast.LENGTH_SHORT).show();
             db.close();
+            SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+            SharedPreferences.Editor editUserInfo = userPref.edit();
+            editUserInfo.putString("username", userName);
+            editUserInfo.apply();
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
-        }
-        else{
-            Toast.makeText(this, R.string.loginFailed , Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, R.string.loginFailed, Toast.LENGTH_SHORT).show();
             db.close();
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
     }
-
-
 }

@@ -16,4 +16,8 @@
     <string name="passwordShort">Lozinka mora imati barem 8 znakova!</string>
     <string name="telNumTaken">Postoji korisnik s ovim brojem mobitela!</string>
     <string name="loginFailed">Neuspješna prijava! Provjerite korisničko ime i lozinku.</string>
+    <string name="logout">Odjavi se</string>
+    <string name="hello">Pozdrav</string>
+    <string name="confirmPassword">Potvrda lozinke</string>
+    <string name="confirmPasswordFalse">Potvrda lozinke razlikuje se od unesene lozine.</string>
 </resources>

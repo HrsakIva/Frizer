@@ -37,6 +37,7 @@ public class RegistrActivity extends LoginActivity {
 
         // getting the username and checking if it is already taken
         String userName = eText.getText().toString();
+        userName = userName.trim();
         db.open();
         Cursor users = db.getAllUsers();
         unique = checkUniqueness(users, userName, 1);
@@ -49,25 +50,41 @@ public class RegistrActivity extends LoginActivity {
         // getting password and checking if it is at least 8 characters long
         eText = (EditText) findViewById(R.id.txtRegPass);
         String password = eText.getText().toString();
-        if(password.length() < 8){
-            Toast.makeText(this, R.string.passwordShort, Toast.LENGTH_LONG).show();
-            insert = false;
+        if(insert) {
+            if (password.length() < 8) {
+                Toast.makeText(this, R.string.passwordShort, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
+        }
+
+        // checking if the password is confirmed
+        eText = (EditText) findViewById(R.id.txtRegPassConfirm);
+        String confirmPassword = eText.getText().toString();
+        if(insert) {
+            if (!confirmPassword.equals(password)) {
+                Toast.makeText(this, R.string.confirmPasswordFalse, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
         }
 
         // getting name and surname
         eText = (EditText) findViewById(R.id.txtRegName);
         String name = eText.getText().toString();
+        name = name.trim();
 
         eText = (EditText) findViewById(R.id.txtRegSurname);
         String surname = eText.getText().toString();
+        surname = surname.trim();
 
         // getting contact number
         eText = (EditText) findViewById(R.id.txtRegTelnumber);
         String telNum = eText.getText().toString();
         unique = checkUniqueness(users, telNum, 5);
-        if(!unique){
-            Toast.makeText(this, R.string.telNumTaken, Toast.LENGTH_LONG).show();
-            insert = false;
+        if(insert) {
+            if (!unique) {
+                Toast.makeText(this, R.string.telNumTaken, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
         }
 
         long success = 0;

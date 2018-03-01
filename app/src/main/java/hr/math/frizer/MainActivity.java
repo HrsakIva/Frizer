@@ -144,6 +144,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_pretrazi) {
             //Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, MapsActivity.class);
+            startActivity(i);
         }
         else if (id == R.id.nav_login) {
             Intent i = new Intent(this, LoginActivity.class);

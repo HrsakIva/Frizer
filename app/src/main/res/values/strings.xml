@@ -20,14 +20,13 @@
     <string name="hello">Pozdrav</string>
     <string name="confirmPassword">Potvrda lozinke</string>
     <string name="confirmPasswordFalse">Potvrda lozinke razlikuje se od unesene lozine.</string>
-<<<<<<< HEAD
     <string name="title_activity_maps">Map</string>
-=======
     <string name="radnoVrijeme">Radno Vrijeme:</string>
     <string name="radniDani">Ponedjeljak - subota</string>
     <string name="btnNarucitiSe">Naruci se!</string>
     <string name="btnPonudaTxt">Ponuda</string>
     <string name="btnCommentText">Komentiraj</string>
-
->>>>>>> 3e97a85c6a841569826a57072aae2fd3789d3849
+    <string name="turnGPSon">Ne mogu dohvatiti lokaciju! Uključite GPS.</string>
+    <string name="noCurrentLocation">Trenutno ne mogu dohvatiti lokaciju. Pokušajte ponovo.</string>
+    <string name="noSalonsNearBy">Svi su prijavljeni saloni više od 5 km udaljeni.</string>
 </resources>

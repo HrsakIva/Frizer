@@ -34,9 +34,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAb_odQOub50-DVEASfDkWEP0XN80VklDk" />
 
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
         <activity android:name=".NearestSalons"></activity>
     </application>
 

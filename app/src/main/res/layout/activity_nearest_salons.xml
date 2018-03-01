@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="hr.math.frizer.NearestSalons">
 
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:id="@+id/linearlayoutNearest"
+        android:orientation="vertical">
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

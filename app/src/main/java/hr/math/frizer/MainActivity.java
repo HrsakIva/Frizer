@@ -107,12 +107,16 @@ public class MainActivity extends AppCompatActivity
 
                 Button btOpen = new Button(this);
                 btOpen.setText(R.string.btOpen);
+                btOpen.setId(Integer.parseInt(c.getString(0)));
                 ll.addView(btOpen);
 
                 btOpen.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(MainActivity.this, SalonActivity.class);
+                        Bundle extras = new Bundle();
+                        extras.putString("_id", Integer.toString(view.getId()) );
+                        i.putExtras(extras);
                         startActivity(i);
                     }
                 });

@@ -20,4 +20,10 @@
     <string name="hello">Pozdrav</string>
     <string name="confirmPassword">Potvrda lozinke</string>
     <string name="confirmPasswordFalse">Potvrda lozinke razlikuje se od unesene lozine.</string>
+    <string name="radnoVrijeme">Radno Vrijeme:</string>
+    <string name="radniDani">Ponedjeljak - subota</string>
+    <string name="btnNarucitiSe">Naruci se!</string>
+    <string name="btnPonudaTxt">Ponuda</string>
+    <string name="btnCommentText">Komentiraj</string>
+
 </resources>

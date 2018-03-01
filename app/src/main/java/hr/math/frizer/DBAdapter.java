@@ -23,7 +23,7 @@ class DBAdapter {
 
     static final String DATABASE_NAME = "MyDB";
     static final String DATABASE_TABLE = "users";
-    static final int DATABASE_VERSION = 5;
+    static final int DATABASE_VERSION = 6;
 
     static final String DATABASE_CREATE =
             "create table users (_id integer primary key autoincrement, "
@@ -45,6 +45,18 @@ class DBAdapter {
                     + "name text not null, address text not null, email text not null, telnumber text not null, workhours text not null, rating text not null);";
 
 
+    // --- table komentari ---
+    static final String KEY_ROWID_KOMENTAR = "_id";
+    static final String KEY_ROWID_SALON_KOMENTAR= "id_salon";
+    static final String KEY_VRIJEME_KOMENTAR= "vrijeme";
+    static final String KEY_KOMENTAR_KOMENTAR= "komentar";
+    static final String KEY_AUTOR_KOMENTAR = "autor";
+
+    static final String DATABASE_TABLE_KOMENTAR = "komentari";
+
+    static final String DATABASE_CREATE_KOMENTAR =
+            "create table komentari (_id integer primary key autoincrement, "
+                    + "id_salon text not null, vrijeme text not null, autor text not null, komentar text not null);";
 
 
     final Context context;
@@ -71,6 +83,7 @@ class DBAdapter {
             try {
                 db.execSQL(DATABASE_CREATE);
                 db.execSQL(DATABASE_CREATE_SALON);
+                db.execSQL(DATABASE_CREATE_KOMENTAR);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -83,6 +96,7 @@ class DBAdapter {
                     + newVersion );
             db.execSQL("DROP TABLE IF EXISTS contacts");
             db.execSQL("DROP TABLE IF EXISTS salon");
+            db.execSQL("DROP TABLE IF EXISTS komentari");
             onCreate(db);
         }
     }
@@ -125,6 +139,16 @@ class DBAdapter {
         return db.insert(DATABASE_TABLE_SALON, null, initialValues);
     }
 
+    public long insertKomentar(String id_salona, String vrijeme, String autor, String komentar)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_ROWID_SALON_KOMENTAR, id_salona);
+        initialValues.put(KEY_VRIJEME_KOMENTAR, vrijeme);
+        initialValues.put(KEY_AUTOR_KOMENTAR, autor);
+        initialValues.put(KEY_KOMENTAR_KOMENTAR, komentar);
+        return db.insert(DATABASE_TABLE_KOMENTAR, null, initialValues);
+    }
+
     //---deletes a particular contact---
     public boolean deleteUser(long rowId)
     {
@@ -149,6 +173,23 @@ class DBAdapter {
                 KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON }, null, null, null, null, null);
     }
 
+    public Cursor getAllKomentar()
+    {
+        return db.query(DATABASE_TABLE_KOMENTAR, new String[] {KEY_ROWID_KOMENTAR, KEY_ROWID_SALON_KOMENTAR, KEY_VRIJEME_KOMENTAR,
+                KEY_AUTOR_KOMENTAR,KEY_KOMENTAR_KOMENTAR}, null, null, null, null, null);
+    }
+
+    public Cursor getAllKomentarForSalon(String rowId) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true,DATABASE_TABLE_KOMENTAR, new String[] {KEY_ROWID_KOMENTAR, KEY_ROWID_SALON_KOMENTAR,
+                                KEY_VRIJEME_KOMENTAR, KEY_AUTOR_KOMENTAR, KEY_KOMENTAR_KOMENTAR}, KEY_ROWID_SALON_KOMENTAR + "='"+rowId+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
 
     //---retrieves a particular contact---
     public Cursor getUser(long rowId) throws SQLException

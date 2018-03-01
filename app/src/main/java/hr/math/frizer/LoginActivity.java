@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private String id_salon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +99,11 @@ public class LoginActivity extends AppCompatActivity {
         if (c.moveToFirst()) {
             do {
                 if (c.getString(9).equals(userName) && c.getString(10).equals(Password))
+                {
+                    id_salon = c.getString(0);
                     return true;
+                }
+
                 //Toast.makeText(this, c.getString(i) + " " + toBeChecked, Toast.LENGTH_SHORT).show();
             } while (c.moveToNext());
         }
@@ -146,13 +152,16 @@ public class LoginActivity extends AppCompatActivity {
         db.open();
         Cursor user = db.getAllSalons();
         if (checkSalonData(user, userName, password)) {
-            Toast.makeText(this, new StringBuilder().append(getText(R.string.hello)).append(", ").append(userName).append("!").toString(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, new StringBuilder().append(getText(R.string.hello)).append(", ").append(userName).append("!").toString(), Toast.LENGTH_SHORT).show();
             db.close();
-            SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+            /*SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
             SharedPreferences.Editor editUserInfo = userPref.edit();
             editUserInfo.putString("username", userName);
-            editUserInfo.apply();
+            editUserInfo.apply();*/
+            Bundle extras = new Bundle();
+            extras.putString("_id",id_salon);
             Intent i = new Intent(this, SalonRegistrActivity.class);
+            i.putExtras(extras);
             startActivity(i);
         } else {
             Toast.makeText(this, R.string.loginFailed, Toast.LENGTH_SHORT).show();

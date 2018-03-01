@@ -23,7 +23,7 @@ class DBAdapter {
 
     static final String DATABASE_NAME = "MyDB";
     static final String DATABASE_TABLE = "users";
-    static final int DATABASE_VERSION = 14;
+    static final int DATABASE_VERSION = 15;
 
     static final String DATABASE_CREATE =
             "create table users (_id integer primary key autoincrement, "
@@ -294,7 +294,7 @@ class DBAdapter {
         return mCursor;
     }
 
-    public Cursor checkUser(String userName, String password){
+    /*public Cursor checkUser(String userName, String password){
 
         Cursor mCursor = db.query(DATABASE_TABLE, new String[] {KEY_ROWID,
             KEY_USERNAME, KEY_PASSWORD, KEY_NAME, KEY_SURNAME, KEY_TELNUMBER}, KEY_USERNAME + "=" + userName + " AND " + KEY_PASSWORD + "=" + password,
@@ -305,7 +305,7 @@ class DBAdapter {
         }
 
         return mCursor;
-    }
+    }*/
 
     public Cursor checkSalon(String userName, String password){
 
@@ -367,5 +367,17 @@ class DBAdapter {
 
 
     //---checks if user already exists in database
+
+    public Cursor getUserByUsername(String username) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true,DATABASE_TABLE, new String[] {KEY_ROWID, KEY_USERNAME,
+                                KEY_PASSWORD,KEY_NAME, KEY_SURNAME, KEY_TELNUMBER}, KEY_USERNAME + "='"+username+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
 
 }

@@ -33,5 +33,8 @@
     <string name="narudzbaDatum">Date</string>
     <string name="narudzbaVrijeme">Time</string>
     <string name="btnNaruciSe">Make an appointment!</string>
+    <string name="narudzbe">Appointments</string>
+    <string name="vrijemeNarudzbe">Time:</string>
+    <string name="uslugaNarudzbe">Service:</string>
 
 </resources>

@@ -33,4 +33,7 @@
     <string name="narudzbaVrijeme">Vrijeme</string>
     <string name="btnNaruciSe">Naruci se!</string>
     <string name="logSalon">Prijavi se kao salon</string>
+    <string name="narudzbe">Narudžbe</string>
+    <string name="vrijemeNarudzbe">Vrijeme:</string>
+    <string name="uslugaNarudzbe">Usluga:</string>
 </resources>

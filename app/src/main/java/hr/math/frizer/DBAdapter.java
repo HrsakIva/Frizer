@@ -23,7 +23,7 @@ class DBAdapter {
 
     static final String DATABASE_NAME = "MyDB";
     static final String DATABASE_TABLE = "users";
-    static final int DATABASE_VERSION = 6;
+    static final int DATABASE_VERSION = 7;
 
     static final String DATABASE_CREATE =
             "create table users (_id integer primary key autoincrement, "
@@ -37,12 +37,15 @@ class DBAdapter {
     static final String KEY_ADDRESS_SALON = "address";
     static final String KEY_WORKHOURS_SALON= "workhours";
     static final String KEY_RATING_SALON = "rating";
+    static final String KEY_LATTITUDE_SALON = "lattitude";
+    static final String KEY_LONGITUDE_SALON = "longitude";
 
     static final String DATABASE_TABLE_SALON = "salon";
 
     static final String DATABASE_CREATE_SALON =
             "create table salon (_id integer primary key autoincrement, "
-                    + "name text not null, address text not null, email text not null, telnumber text not null, workhours text not null, rating text not null);";
+                    + "name text not null, address text not null, email text not null, telnumber text not null, workhours text not null, rating text not null," +
+                        " lattitude text not null, longitude text not null);";
 
 
     // --- table komentari ---
@@ -126,7 +129,7 @@ class DBAdapter {
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
 
-    public long insertSalon(String name, String address, String email, String telnumber, String workhours, String rating)
+    public long insertSalon(String name, String address, String email, String telnumber, String workhours, String rating, String lattitude, String longitude)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME_SALON, name);
@@ -135,6 +138,8 @@ class DBAdapter {
         initialValues.put(KEY_TELNUMBER_SALON, telnumber);
         initialValues.put(KEY_WORKHOURS_SALON,workhours);
         initialValues.put(KEY_RATING_SALON,rating);
+        initialValues.put(KEY_LATTITUDE_SALON, lattitude);
+        initialValues.put(KEY_LONGITUDE_SALON, longitude);
 
         return db.insert(DATABASE_TABLE_SALON, null, initialValues);
     }
@@ -170,7 +175,7 @@ class DBAdapter {
     public Cursor getAllSalons()
     {
         return db.query(DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON, KEY_NAME_SALON, KEY_ADDRESS_SALON,
-                KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON }, null, null, null, null, null);
+                KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON }, null, null, null, null, null);
     }
 
     public Cursor getAllKomentar()
@@ -221,7 +226,7 @@ class DBAdapter {
     {
         Cursor mCursor =
                 db.query(true, DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON,
-                                KEY_NAME_SALON, KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON}, KEY_ROWID + "=" + rowId, null,
+                                KEY_NAME_SALON, KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -239,7 +244,7 @@ class DBAdapter {
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-    public boolean updateSalon(long rowId, String name, String address, String email, String telnumber, String workhours, String rating)
+    public boolean updateSalon(long rowId, String name, String address, String email, String telnumber, String workhours, String rating, String lattitude, String longitude)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_NAME_SALON, name);
@@ -248,6 +253,8 @@ class DBAdapter {
         args.put(KEY_TELNUMBER_SALON, telnumber);
         args.put(KEY_WORKHOURS_SALON,workhours);
         args.put(KEY_RATING_SALON,rating);
+        args.put(KEY_LATTITUDE_SALON, lattitude);
+        args.put(KEY_LONGITUDE_SALON, longitude);
 
         return db.update(DATABASE_TABLE_SALON, args, KEY_ROWID_SALON + "=" + rowId, null) > 0;
     }

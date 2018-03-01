@@ -34,6 +34,10 @@ public class SalonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salon);
 
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+        String currentDateandTime = sdf.format(currentTime);
+
         //Toast.makeText(this, currentDateandTime , Toast.LENGTH_SHORT).show();
 
         Bundle bundle=getIntent().getExtras();
@@ -63,10 +67,10 @@ public class SalonActivity extends AppCompatActivity {
 
         TextView komentari = (TextView) findViewById(R.id.txtKomentari);
 
-       /* db.open();
-        long id= db.insertKomentar("2",currentDateandTime,"Iva", "Odlicno!.");
+        db.open();
+        long id= db.insertKomentar("2", currentDateandTime ,"Iva", "Odlicno!.");
         id= db.insertKomentar("2",currentDateandTime,"AnaM", "Jako sam zadovoljna.");
-        db.close();*/
+        db.close();
         //Toast.makeText(this, c1.getString(1)+" "+c1.getString(2)+" "+c1.getString(3)+" "+c1.getString(4),Toast.LENGTH_LONG).show();
 
         db.open();

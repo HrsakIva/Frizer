@@ -1,9 +1,11 @@
 package hr.math.frizer;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -62,11 +64,13 @@ public class MainActivity extends AppCompatActivity
         DBAdapter db = new DBAdapter(this);
 
         //---add a salon---
-        /*db.open();
-        long id = db.insertSalon("Fluid", "Malešnica 54, Zagreb", "fsfluid@gmail.com", "0912345555", "8-20","0");
-        id = db.insertSalon("Frizerski salon W", "Taborska 31, Zagreb", "frizerskisalonw@yahoo.com", "0912345444", "8-20","0");
+        db.open();
+        long id = db.insertSalon("Fluid", "Malešnica 54, Zagreb", "fsfluid@gmail.com", "0912345555", "8-20","0",
+                                "45.807559", "15.897518");
+        id = db.insertSalon("Frizerski salon W", "Taborska 31, Zagreb", "frizerskisalonw@yahoo.com", "0912345444", "8-20","0",
+                            "45.801492", "15.952285");
 
-        db.close();*/
+        db.close();
 
 
         //--get all salons---
@@ -148,7 +152,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_pretrazi) {
             //Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, MapsActivity.class);
+            Intent i = new Intent(this, NearestSalons.class);
             startActivity(i);
         }
         else if (id == R.id.nav_login) {

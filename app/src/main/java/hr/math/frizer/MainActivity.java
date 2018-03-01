@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity
         //---add a salon---
         db.open();
         long id = db.insertSalon("Fluid", "Malešnica 54, Zagreb", "fsfluid@gmail.com", "0912345555", "8-20","0",
-                                "45.807559", "15.897518");
+                                "45.807559", "15.897518","fluidic","12345678");
         id = db.insertSalon("Frizerski salon W", "Taborska 31, Zagreb", "frizerskisalonw@yahoo.com", "0912345444", "8-20","0",
-                            "45.801492", "15.952285");
+                            "45.801492", "15.952285","wich","12345678");
 
         db.close();
 
@@ -78,6 +78,14 @@ public class MainActivity extends AppCompatActivity
         Cursor c = db.getAllSalons();
         DisplaySalon(c);
         db.close();
+    }
+
+    public void onRestart(){
+        super.onRestart();
+
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 
     public void DisplaySalon(Cursor c)

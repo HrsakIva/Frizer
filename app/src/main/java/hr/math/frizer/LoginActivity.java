@@ -93,6 +93,16 @@ public class LoginActivity extends AppCompatActivity {
         }
         return false;
     }
+    public boolean checkSalonData(Cursor c, String userName, String Password) {
+        if (c.moveToFirst()) {
+            do {
+                if (c.getString(9).equals(userName) && c.getString(10).equals(Password))
+                    return true;
+                //Toast.makeText(this, c.getString(i) + " " + toBeChecked, Toast.LENGTH_SHORT).show();
+            } while (c.moveToNext());
+        }
+        return false;
+    }
 
     public void login(View v) {
         DBAdapter db = new DBAdapter(this);
@@ -113,6 +123,36 @@ public class LoginActivity extends AppCompatActivity {
             editUserInfo.putString("username", userName);
             editUserInfo.apply();
             Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        } else {
+            Toast.makeText(this, R.string.loginFailed, Toast.LENGTH_SHORT).show();
+            db.close();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+    }
+
+    // prijedji na novu aktivnost za ulogiravanje  salona
+    public void goToSalonLogin(View view)
+    {
+        DBAdapter db = new DBAdapter(this);
+
+        EditText eText = (EditText) findViewById(R.id.txtUserName);
+        String userName = eText.getText().toString();
+
+        eText = (EditText) findViewById(R.id.txtPass);
+        String password = eText.getText().toString();
+
+        db.open();
+        Cursor user = db.getAllSalons();
+        if (checkSalonData(user, userName, password)) {
+            Toast.makeText(this, new StringBuilder().append(getText(R.string.hello)).append(", ").append(userName).append("!").toString(), Toast.LENGTH_SHORT).show();
+            db.close();
+            SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+            SharedPreferences.Editor editUserInfo = userPref.edit();
+            editUserInfo.putString("username", userName);
+            editUserInfo.apply();
+            Intent i = new Intent(this, SalonRegistrActivity.class);
             startActivity(i);
         } else {
             Toast.makeText(this, R.string.loginFailed, Toast.LENGTH_SHORT).show();

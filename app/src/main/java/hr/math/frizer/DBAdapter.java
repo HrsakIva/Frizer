@@ -23,7 +23,7 @@ class DBAdapter {
 
     static final String DATABASE_NAME = "MyDB";
     static final String DATABASE_TABLE = "users";
-    static final int DATABASE_VERSION = 7;
+    static final int DATABASE_VERSION = 14;
 
     static final String DATABASE_CREATE =
             "create table users (_id integer primary key autoincrement, "
@@ -39,13 +39,15 @@ class DBAdapter {
     static final String KEY_RATING_SALON = "rating";
     static final String KEY_LATTITUDE_SALON = "lattitude";
     static final String KEY_LONGITUDE_SALON = "longitude";
+    static final String KEY_USERNAME_SALON = "username";
+    static final String KEY_PASSWORD_SALON = "password";
 
     static final String DATABASE_TABLE_SALON = "salon";
 
     static final String DATABASE_CREATE_SALON =
             "create table salon (_id integer primary key autoincrement, "
                     + "name text not null, address text not null, email text not null, telnumber text not null, workhours text not null, rating text not null," +
-                        " lattitude text not null, longitude text not null);";
+                    " lattitude text not null, longitude text not null, username text not null, password text not null);";
 
 
     // --- table komentari ---
@@ -60,6 +62,34 @@ class DBAdapter {
     static final String DATABASE_CREATE_KOMENTAR =
             "create table komentari (_id integer primary key autoincrement, "
                     + "id_salon text not null, vrijeme text not null, autor text not null, komentar text not null);";
+
+    // --- table ponuda ---
+
+    static final String KEY_ROWID_PONUDA = "_id";
+    static final String KEY_ROWID_SALON_PONUDA= "id_salon_ponuda";
+    static final String KEY_PONUDA_PONUDA= "ponuda";
+    static final String KEY_CIJENA_PONUDA= "cijena";
+    static final String KEY_TRAJANJE_PONUDA= "trajanje";
+
+    static final String DATABASE_TABLE_PONUDA = "ponude";
+
+    static final String DATABASE_CREATE_PONUDA =
+            "create table ponude (_id integer primary key autoincrement, "
+                    + "id_salon_ponuda text not null, ponuda text not null,cijena text not null, trajanje text not null);";
+
+    // --- table narudzba ---
+
+    static final String KEY_ROWID_NARUDZBA = "_id";
+    static final String KEY_ROWID_SALON_NARUDZBA= "id_salon_narudzba";
+    static final String KEY_NARUDZBA_NARUDZBA= "narudzba";
+    static final String KEY_VRIJEME_NARUDZBE= "vrijeme";
+    static final String KEY_KORISNIK_NARUDZBE= "korisnik";
+
+    static final String DATABASE_TABLE_NARUDZBA = "narudzbe";
+
+    static final String DATABASE_CREATE_NARUDZBA =
+            "create table narudzbe (_id integer primary key autoincrement, "
+                    + "id_salon_narudzba text not null, narudzba text not null,vrijeme text not null, korisnik text not null);";
 
 
     final Context context;
@@ -87,6 +117,8 @@ class DBAdapter {
                 db.execSQL(DATABASE_CREATE);
                 db.execSQL(DATABASE_CREATE_SALON);
                 db.execSQL(DATABASE_CREATE_KOMENTAR);
+                db.execSQL(DATABASE_CREATE_PONUDA);
+                db.execSQL(DATABASE_CREATE_NARUDZBA);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -100,6 +132,8 @@ class DBAdapter {
             db.execSQL("DROP TABLE IF EXISTS contacts");
             db.execSQL("DROP TABLE IF EXISTS salon");
             db.execSQL("DROP TABLE IF EXISTS komentari");
+            db.execSQL("DROP TABLE IF EXISTS ponude");
+            db.execSQL("DROP TABLE IF EXISTS narudzbe");
             onCreate(db);
         }
     }
@@ -129,7 +163,8 @@ class DBAdapter {
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
 
-    public long insertSalon(String name, String address, String email, String telnumber, String workhours, String rating, String lattitude, String longitude)
+    public long insertSalon(String name, String address, String email, String telnumber, String workhours, String rating,
+                            String lattitude, String longitude, String username, String password)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME_SALON, name);
@@ -140,6 +175,8 @@ class DBAdapter {
         initialValues.put(KEY_RATING_SALON,rating);
         initialValues.put(KEY_LATTITUDE_SALON, lattitude);
         initialValues.put(KEY_LONGITUDE_SALON, longitude);
+        initialValues.put(KEY_USERNAME_SALON, username);
+        initialValues.put(KEY_PASSWORD_SALON, password);
 
         return db.insert(DATABASE_TABLE_SALON, null, initialValues);
     }
@@ -152,6 +189,28 @@ class DBAdapter {
         initialValues.put(KEY_AUTOR_KOMENTAR, autor);
         initialValues.put(KEY_KOMENTAR_KOMENTAR, komentar);
         return db.insert(DATABASE_TABLE_KOMENTAR, null, initialValues);
+    }
+
+    public long insertPonuda(String id_salona, String ponuda, String cijena, String trajanje)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_ROWID_SALON_PONUDA, id_salona);
+        initialValues.put(KEY_PONUDA_PONUDA, ponuda);
+        initialValues.put(KEY_CIJENA_PONUDA, cijena);
+        initialValues.put(KEY_TRAJANJE_PONUDA, trajanje);
+        return db.insert(DATABASE_TABLE_PONUDA, null, initialValues);
+    }
+
+    public long insertNarudzba(String id_salona, String narudzba, String vrijeme, String korisnik)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_ROWID_SALON_NARUDZBA, id_salona);
+        initialValues.put(KEY_NARUDZBA_NARUDZBA, narudzba);
+        initialValues.put(KEY_VRIJEME_NARUDZBE, vrijeme);
+        initialValues.put(KEY_KORISNIK_NARUDZBE, korisnik);
+
+
+        return db.insert(DATABASE_TABLE_NARUDZBA, null, initialValues);
     }
 
     //---deletes a particular contact---
@@ -174,8 +233,10 @@ class DBAdapter {
 
     public Cursor getAllSalons()
     {
-        return db.query(DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON, KEY_NAME_SALON, KEY_ADDRESS_SALON,
-                KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON }, null, null, null, null, null);
+        return db.query(DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON, KEY_NAME_SALON,
+                KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON,
+                KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON,
+                KEY_USERNAME_SALON, KEY_PASSWORD_SALON}, null, null, null, null, null);
     }
 
     public Cursor getAllKomentar()
@@ -189,6 +250,30 @@ class DBAdapter {
         Cursor mCursor =
                 db.query(true,DATABASE_TABLE_KOMENTAR, new String[] {KEY_ROWID_KOMENTAR, KEY_ROWID_SALON_KOMENTAR,
                                 KEY_VRIJEME_KOMENTAR, KEY_AUTOR_KOMENTAR, KEY_KOMENTAR_KOMENTAR}, KEY_ROWID_SALON_KOMENTAR + "='"+rowId+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
+    public Cursor getAllPonudaForSalon(String rowId) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true,DATABASE_TABLE_PONUDA, new String[] {KEY_ROWID_PONUDA, KEY_ROWID_SALON_PONUDA,
+                                KEY_PONUDA_PONUDA,KEY_CIJENA_PONUDA, KEY_TRAJANJE_PONUDA}, KEY_ROWID_SALON_PONUDA + "='"+rowId+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
+    public Cursor getAllNarudzbaForSalon(String rowId) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true,DATABASE_TABLE_NARUDZBA, new String[] {KEY_ROWID_NARUDZBA, KEY_ROWID_SALON_NARUDZBA,
+                                KEY_NARUDZBA_NARUDZBA,KEY_VRIJEME_NARUDZBE, KEY_KORISNIK_NARUDZBE}, KEY_ROWID_SALON_NARUDZBA + "='"+rowId+"'", null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -222,11 +307,29 @@ class DBAdapter {
         return mCursor;
     }
 
+    public Cursor checkSalon(String userName, String password){
+
+        Cursor mCursor = db.query(DATABASE_TABLE, new String[] {KEY_ROWID_SALON, KEY_NAME_SALON,
+                        KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON,
+                        KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON,
+                        KEY_USERNAME_SALON, KEY_PASSWORD_SALON}, KEY_USERNAME_SALON + "=" + userName
+                        + " AND " + KEY_PASSWORD_SALON + "=" + password,
+                null, null, null, null, null);
+
+        if(mCursor != null){
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
     public Cursor getSalon(long rowId) throws SQLException
     {
         Cursor mCursor =
                 db.query(true, DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON,
-                                KEY_NAME_SALON, KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON, KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON}, KEY_ROWID + "=" + rowId, null,
+                                KEY_NAME_SALON, KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON,
+                                KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON,
+                                KEY_USERNAME_SALON, KEY_PASSWORD_SALON}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -244,7 +347,8 @@ class DBAdapter {
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-    public boolean updateSalon(long rowId, String name, String address, String email, String telnumber, String workhours, String rating, String lattitude, String longitude)
+    public boolean updateSalon(long rowId, String name, String address, String email, String telnumber, String workhours,
+                               String rating, String lattitude, String longitude, String username, String password)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_NAME_SALON, name);
@@ -255,6 +359,8 @@ class DBAdapter {
         args.put(KEY_RATING_SALON,rating);
         args.put(KEY_LATTITUDE_SALON, lattitude);
         args.put(KEY_LONGITUDE_SALON, longitude);
+        args.put(KEY_USERNAME_SALON, username);
+        args.put(KEY_PASSWORD_SALON, password);
 
         return db.update(DATABASE_TABLE_SALON, args, KEY_ROWID_SALON + "=" + rowId, null) > 0;
     }

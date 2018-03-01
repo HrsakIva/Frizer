@@ -87,7 +87,8 @@
                 android:layout_weight="1"
                 android:text="@string/btnNarucitiSe"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:onClick="Order"/>
 
             <Button
                 android:id="@+id/btnPonuda"
@@ -95,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/btnPonudaTxt"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:onClick="Ponuda"/>
         </LinearLayout>
 
         <Space
@@ -106,7 +108,7 @@
             android:id="@+id/txtKomentari"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Komentari(50)" />
+            android:text="Komentari" />
 
         <EditText
             android:id="@+id/etComment"

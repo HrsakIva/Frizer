@@ -32,8 +32,63 @@ public class PonudaActivity extends AppCompatActivity {
         db.close();
 
         /*db.open();
-        long id = db.insertPonuda("2","Žensko šišanje kratka kosa","50kn","30 min");
-        id = db.insertPonuda("2","Žensko šišanje duga kosa","80kn","1h 15min");
+            long id = db.insertPonuda("1","Žensko šišanje kratka kosa","50kn","30 min");
+            id = db.insertPonuda("1","Žensko šišanje i frizura kratka kosa","65kn","40 min");
+            id = db.insertPonuda("1","Žensko šišanje duga kosa","80kn","1h 15min");
+            id = db.insertPonuda("1","Žensko šišanje i frizura duga kosa","90kn","1h 20min");
+            id = db.insertPonuda("1","Muško šišanje","30kn","20 min");
+            id = db.insertPonuda("1","Bojanje duga kose","200kn","2h");
+            id = db.insertPonuda("1","Bojanje kratka kosa","180kn","1h 45min");
+            id = db.insertPonuda("1","Pramenovi kratka kosa","150kn","1h 45min");
+            id = db.insertPonuda("1","Pramenovi duga kosa","180kn","2h");
+            id = db.insertPonuda("1","Balayage pramenovi kratka kosa","200kn","2h");
+            id = db.insertPonuda("1","Balayage pramenovi duga kosa","220kn","2h 15min");
+            id = db.insertPonuda("1","Flamboyage pramenovi kratka kosa","230kn","2h");
+            id = db.insertPonuda("1","Flamboyage pramenovi duga kosa","250kn","2h 15min");
+            id = db.insertPonuda("1","Botox za kosu","300kn","1h 15min");
+            id = db.insertPonuda("1","Šišanje vrućim škarama kratka kosa","100kn","1h");
+            id = db.insertPonuda("1","Šišanje vrućim škarama duga kosa","120kn","1h");
+            id = db.insertPonuda("1","Masaža vlasišta","50kn","30min");
+            id = db.insertPonuda("1","Brazilsko ravnanje kose","550kn","2h 30min");
+
+            id = db.insertPonuda("2","Žensko šišanje kratka kosa","50kn","30 min");
+            id = db.insertPonuda("2","Žensko šišanje i frizura kratka kosa","65kn","40 min");
+            id = db.insertPonuda("2","Žensko šišanje duga kosa","80kn","1h 15min");
+            id = db.insertPonuda("2","Žensko šišanje i frizura duga kosa","90kn","1h 20min");
+            id = db.insertPonuda("2","Muško šišanje","30kn","20 min");
+            id = db.insertPonuda("2","Bojanje duga kose","200kn","2h");
+            id = db.insertPonuda("2","Bojanje kratka kosa","180kn","1h 45min");
+            id = db.insertPonuda("2","Pramenovi kratka kosa","150kn","1h 45min");
+            id = db.insertPonuda("2","Pramenovi duga kosa","180kn","2h");
+            id = db.insertPonuda("2","Balayage pramenovi kratka kosa","200kn","2h");
+            id = db.insertPonuda("2","Balayage pramenovi duga kosa","220kn","2h 15min");
+            id = db.insertPonuda("2","Flamboyage pramenovi kratka kosa","230kn","2h");
+            id = db.insertPonuda("2","Flamboyage pramenovi duga kosa","250kn","2h 15min");
+            id = db.insertPonuda("2","Botox za kosu","300kn","1h 15min");
+            id = db.insertPonuda("2","Šišanje vrućim škarama kratka kosa","100kn","1h");
+            id = db.insertPonuda("2","Šišanje vrućim škarama duga kosa","120kn","1h");
+            id = db.insertPonuda("2","Masaža vlasišta","50kn","30min");
+            id = db.insertPonuda("2","Brazilsko ravnanje kose","550kn","2h 30min");
+
+            id = db.insertPonuda("3","Žensko šišanje kratka kosa","50kn","30 min");
+            id = db.insertPonuda("3","Žensko šišanje i frizura kratka kosa","65kn","40 min");
+            id = db.insertPonuda("3","Žensko šišanje duga kosa","80kn","1h 15min");
+            id = db.insertPonuda("3","Žensko šišanje i frizura duga kosa","90kn","1h 20min");
+            id = db.insertPonuda("3","Muško šišanje","30kn","20 min");
+            id = db.insertPonuda("3","Bojanje duga kose","200kn","2h");
+            id = db.insertPonuda("3","Bojanje kratka kosa","180kn","1h 45min");
+            id = db.insertPonuda("3","Pramenovi kratka kosa","150kn","1h 45min");
+            id = db.insertPonuda("3","Pramenovi duga kosa","180kn","2h");
+            id = db.insertPonuda("3","Balayage pramenovi kratka kosa","200kn","2h");
+            id = db.insertPonuda("3","Balayage pramenovi duga kosa","220kn","2h 15min");
+            id = db.insertPonuda("3","Flamboyage pramenovi kratka kosa","230kn","2h");
+            id = db.insertPonuda("3","Flamboyage pramenovi duga kosa","250kn","2h 15min");
+            id = db.insertPonuda("3","Botox za kosu","300kn","1h 15min");
+            id = db.insertPonuda("3","Šišanje vrućim škarama kratka kosa","100kn","1h");
+            id = db.insertPonuda("3","Šišanje vrućim škarama duga kosa","120kn","1h");
+            id = db.insertPonuda("3","Masaža vlasišta","50kn","30min");
+            id = db.insertPonuda("3","Brazilsko ravnanje kose","550kn","2h 30min");
+
         db.close();*/
 
         db.open();

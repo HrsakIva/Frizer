@@ -16,12 +16,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvSalonName"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Frizerski Salon W"
                 android:textSize="24sp" />
@@ -30,49 +30,51 @@
                 android:id="@+id/rtStars"
                 style="@android:style/Widget.DeviceDefault.Light.RatingBar"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:numStars="5"
                 android:stepSize="0.1" />
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
             android:id="@+id/txtAdresaSalon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="Taborska 25, Zagreb" />
 
         <TextView
             android:id="@+id/txtTelNumberSalon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="0918907770" />
 
         <TextView
             android:id="@+id/txtMailSalon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="frizerskisalonw@gmail.com" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="@string/radnoVrijeme" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="@string/radniDani" />
 
         <TextView
             android:id="@+id/txtWorkhoursSalon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="8-20" />
 
         <LinearLayout
@@ -108,7 +110,7 @@
             android:id="@+id/txtKomentari"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Komentari" />
+            android:text="@string/komentari" />
 
         <EditText
             android:id="@+id/etComment"

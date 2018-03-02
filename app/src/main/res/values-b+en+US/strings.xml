@@ -40,5 +40,9 @@
     <string name="userNameEmpty">Enter your username!</string>
     <string name="nameEmpty">Enter your name!</string>
     <string name="surnameEmpty">Enter your surname!</string>
+    <string name="komentari">Comment</string>
+    <string name="btnKomentiranjeLog">Login first!</string>
+    <string name="uspjesnoNarucivanje">Your order is sent!</string>
+    <string name="neuspjesnoNarucivanje">Login first!</string>
 
 </resources>

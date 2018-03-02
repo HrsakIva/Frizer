@@ -29,6 +29,7 @@ public class NarudzbaActivity extends AppCompatActivity {
     {
         if(getUserName()!=null)
         {
+            v.setEnabled(true);
             EditText etDatum = (EditText) findViewById(R.id.etDatum);
             EditText etVrijeme = (EditText) findViewById(R.id.etVrijeme);
             EditText etUsluga = (EditText) findViewById(R.id.etUsluga);
@@ -43,9 +44,15 @@ public class NarudzbaActivity extends AppCompatActivity {
             db.open();
             long id = db.insertNarudzba(id_salon, usluga, datum, getUserName() );
             db.close();
+
+            Toast.makeText(this,R.string.uspjesnoNarucivanje, Toast.LENGTH_LONG).show();
+            v.setEnabled(false);
+
         }
         else{
-            Toast.makeText(this, "Login first", Toast.LENGTH_LONG).show();
+
+            v.setEnabled(false);
+            Toast.makeText(this, R.string.neuspjesnoNarucivanje, Toast.LENGTH_LONG).show();
         }
     }
 

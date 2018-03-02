@@ -104,6 +104,7 @@ public class SalonActivity extends AppCompatActivity {
 
                 if(getUserName()!= null)
                 {
+                    view.setEnabled(true);
                     EditText etComment =(EditText)findViewById(R.id.etComment);
                     String commentText  = etComment.getText().toString();
 
@@ -120,6 +121,10 @@ public class SalonActivity extends AppCompatActivity {
                     Intent intent = getIntent();
                     finish();
                     startActivity(intent);
+                }
+                else{
+                    view.setEnabled(false);
+                    Toast.makeText(SalonActivity.this, R.string.btnKomentiranjeLog, Toast.LENGTH_LONG).show();
                 }
 
             }

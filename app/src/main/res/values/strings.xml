@@ -43,4 +43,8 @@
     <string name="userNameEmpty">Unesite korisničko ime!</string>
     <string name="nameEmpty">Unesite svoje ime!</string>
     <string name="surnameEmpty">Unesite svoje prezime!</string>
+    <string name="komentari">Komentari</string>
+    <string name="btnKomentiranjeLog">Prvo se prijavi!</string>
+    <string name="uspjesnoNarucivanje">Vasa narudžba je poslana!</string>
+    <string name="neuspjesnoNarucivanje">Prvo se prijavite!</string>
 </resources>

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         DBAdapter db = new DBAdapter(this);
 
         //---add a salon---
-        db.open();
+        /*db.open();
         long id = db.insertSalon("Fluid", "Malešnica 54, Zagreb", "fsfluid@gmail.com", "0912345555", "8-20","0",
                                 "45.807559", "15.897518","fluidic","12345678");
         id = db.insertSalon("Frizerski salon W", "Taborska 31, Zagreb", "frizerskisalonw@yahoo.com", "0912345444", "8-20","0",
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         id = db.insertSalon("Evelin", "Nova ves 72, Zagreb", "evelin.salon@gmail.com", "013675482", "8 - 20",
                 "0", "45.826501", "15.978745", "evelin", "12345678");
 
-        db.close();
+        db.close();*/
 
 
         //--get all salons---

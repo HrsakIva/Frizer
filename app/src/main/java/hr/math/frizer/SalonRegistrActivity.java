@@ -35,7 +35,7 @@ public class SalonRegistrActivity extends AppCompatActivity {
 
         db.open();
         Cursor c1 = db.getAllNarudzbaForSalon(bundle.getString("_id"));
-        Toast.makeText(this, c1.getString(4), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, c1.getString(4), Toast.LENGTH_LONG).show();
         db.close();
 
 
@@ -44,30 +44,33 @@ public class SalonRegistrActivity extends AppCompatActivity {
         ime = new ArrayList<String>();
         broj = new ArrayList<String>();
 
-
-
-        ListView lv = (ListView) findViewById(R.id.lvNarudzbe);
-        if(c1.moveToFirst())
+        if(c1!=null)
         {
-            do{
-                db.open();
-                Cursor c2 = db.getUserByUsername(c1.getString(4));
-                if(c2.moveToFirst())
-                {
-                    ime.add(c2.getString(3)+ " "+c2.getString(4));
-                    broj.add(c2.getString(5));
+            ListView lv = (ListView) findViewById(R.id.lvNarudzbe);
+            if(c1.moveToFirst())
+            {
+                do{
+                    db.open();
+                    Cursor c2 = db.getUserByUsername(c1.getString(4));
+                    if(c2.moveToFirst())
+                    {
+                        ime.add(c2.getString(3)+ " "+c2.getString(4));
+                        broj.add(c2.getString(5));
+                    }
+                    db.close();
+
+
+                    vrijeme.add(c1.getString(3));
+                    usluga.add(c1.getString(2));
                 }
-                db.close();
-
-
-                vrijeme.add(c1.getString(3));
-                usluga.add(c1.getString(2));
+                while(c1.moveToNext());
             }
-            while(c1.moveToNext());
+            CustomAdapter customAdapter = new CustomAdapter();
+            lv.setAdapter(customAdapter);
         }
 
-        CustomAdapter customAdapter = new CustomAdapter();
-        lv.setAdapter(customAdapter);
+
+
     }
 
     class CustomAdapter extends BaseAdapter {

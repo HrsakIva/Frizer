@@ -29,4 +29,18 @@
     <string name="turnGPSon">Ne mogu dohvatiti lokaciju! Uključite GPS.</string>
     <string name="noCurrentLocation">Trenutno ne mogu dohvatiti lokaciju. Pokušajte ponovo.</string>
     <string name="noSalonsNearBy">Svi su prijavljeni saloni više od 5 km udaljeni.</string>
+    <string name="usluge">Usluge</string>
+    <string name="crCijena">Cijena:</string>
+    <string name="crTrajanje">Trajanje:</string>
+    <string name="narudzbaDatum">Datum</string>
+    <string name="narudzbaVrijeme">Vrijeme</string>
+    <string name="btnNaruciSe">Naruci se!</string>
+    <string name="logSalon">Prijavi se kao salon</string>
+    <string name="narudzbe">Narudžbe</string>
+    <string name="vrijemeNarudzbe">Vrijeme:</string>
+    <string name="uslugaNarudzbe">Usluga:</string>
+    <string name="telNumEmpty">Unesite broj mobitela!</string>
+    <string name="userNameEmpty">Unesite korisničko ime!</string>
+    <string name="nameEmpty">Unesite svoje ime!</string>
+    <string name="surnameEmpty">Unesite svoje prezime!</string>
 </resources>

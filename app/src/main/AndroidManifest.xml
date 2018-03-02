@@ -14,7 +14,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/scissors36"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -29,12 +29,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrActivity" />
         <activity android:name=".SalonActivity" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAb_odQOub50-DVEASfDkWEP0XN80VklDk" />
-
+        <activity android:name=".PonudaActivity" />
+        <activity android:name=".NarudzbaActivity" />
         <activity android:name=".NearestSalons"></activity>
+        <activity android:name=".SalonRegistrActivity"></activity>
+
     </application>
 
 </manifest>

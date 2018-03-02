@@ -1,6 +1,7 @@
 package hr.math.frizer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,13 +39,18 @@ public class RegistrActivity extends LoginActivity {
         // getting the username and checking if it is already taken
         String userName = eText.getText().toString();
         userName = userName.trim();
+        if(userName.isEmpty()){
+            Toast.makeText(this, R.string.userNameEmpty, Toast.LENGTH_LONG);
+            insert = false;
+        }
         db.open();
         Cursor users = db.getAllUsers();
         unique = checkUniqueness(users, userName, 1);
-
-        if(!unique){
-            Toast.makeText(this, R.string.userNameTaken, Toast.LENGTH_LONG).show();
-            insert = false;
+        if(insert) {
+            if (!unique) {
+                Toast.makeText(this, R.string.userNameTaken, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
         }
 
         // getting password and checking if it is at least 8 characters long
@@ -71,14 +77,32 @@ public class RegistrActivity extends LoginActivity {
         eText = (EditText) findViewById(R.id.txtRegName);
         String name = eText.getText().toString();
         name = name.trim();
+        if(insert) {
+            if (name.isEmpty()) {
+                Toast.makeText(this, R.string.nameEmpty, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
+        }
 
         eText = (EditText) findViewById(R.id.txtRegSurname);
         String surname = eText.getText().toString();
         surname = surname.trim();
+        if(insert) {
+            if (surname.isEmpty()) {
+                Toast.makeText(this, R.string.surnameEmpty, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
+        }
 
         // getting contact number
         eText = (EditText) findViewById(R.id.txtRegTelnumber);
         String telNum = eText.getText().toString();
+        if(insert) {
+            if (telNum.isEmpty()) {
+                Toast.makeText(this, R.string.telNumEmpty, Toast.LENGTH_LONG).show();
+                insert = false;
+            }
+        }
         unique = checkUniqueness(users, telNum, 5);
         if(insert) {
             if (!unique) {
@@ -91,7 +115,11 @@ public class RegistrActivity extends LoginActivity {
         if(insert) {
             success = db.insertUser(userName, password, name, surname, telNum);
             if(success != -1){
-                Toast.makeText(this, "Pozdrav, " + userName + "!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, new StringBuilder().append(R.string.hello).append(", ").append(userName).append("!"), Toast.LENGTH_SHORT).show();
+                SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor editUserInfo = userPref.edit();
+                editUserInfo.putString("username", userName);
+                editUserInfo.apply();
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }

@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Hairdresser</string>
+    <string name="prijava">Log in</string>
+    <string name="saloniUBlizini">Search near by</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="login">Log in</string>
+    <string name="registr">Registration</string>
+    <string name="btOpen">Open</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="surname">Surname</string>
+    <string name="contactNumber">Contact number</string>
+    <string name="userNameTaken">This username is already taken. Please choose another one.</string>
+    <string name="passwordShort">Password must contain at least 8 characters.</string>
+    <string name="telNumTaken">Username with this telephone number exists!</string>
+    <string name="loginFailed">Log in failed! Please check your input.</string>
+    <string name="logout">Log out</string>
+    <string name="hello">Hello</string>
+    <string name="confirmPassword">Confirm password</string>
+    <string name="confirmPasswordFalse">Confirm password is not the same as password.</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="radnoVrijeme">Work hours</string>
+    <string name="radniDani">Monday - saturday</string>
+    <string name="btnNarucitiSe">Make appoitment!</string>
+    <string name="btnPonudaTxt">Offer</string>
+    <string name="btnCommentText">Comment</string>
+    <string name="logSalon">Log in as salon</string>
+    <string name="usluge">Services</string>
+    <string name="crCijena">Price:</string>
+    <string name="crTrajanje">Duration:</string>
+    <string name="narudzbaDatum">Date</string>
+    <string name="narudzbaVrijeme">Time</string>
+    <string name="btnNaruciSe">Make an appointment!</string>
+    <string name="narudzbe">Appointments</string>
+    <string name="vrijemeNarudzbe">Time:</string>
+    <string name="uslugaNarudzbe">Service:</string>
+
+</resources>

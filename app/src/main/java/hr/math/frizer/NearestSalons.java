@@ -70,7 +70,7 @@ public class NearestSalons extends AppCompatActivity {
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(locationManager.GPS_PROVIDER)) {
-            Toast.makeText(this, R.string.turnGPSon, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.turnGPSon, Toast.LENGTH_SHORT).show();
             locationFound = false;
         } else {
             locationFound = getLocation();
@@ -188,7 +188,7 @@ public class NearestSalons extends AppCompatActivity {
             }
 
             else{
-                Toast.makeText(this, R.string.noCurrentLocation, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, R.string.noCurrentLocation, Toast.LENGTH_SHORT).show();
                 return false;
             }
         }

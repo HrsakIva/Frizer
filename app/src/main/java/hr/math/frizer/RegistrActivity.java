@@ -115,7 +115,7 @@ public class RegistrActivity extends LoginActivity {
         if(insert) {
             success = db.insertUser(userName, password, name, surname, telNum);
             if(success != -1){
-                Toast.makeText(this, new StringBuilder().append(R.string.hello).append(", ").append(userName).append("!"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, new StringBuilder().append(getText(R.string.hello)).append(", ").append(userName).append("!"), Toast.LENGTH_SHORT).show();
                 SharedPreferences userPref = getSharedPreferences("userInfo", MODE_PRIVATE);
                 SharedPreferences.Editor editUserInfo = userPref.edit();
                 editUserInfo.putString("username", userName);

@@ -69,6 +69,18 @@ public class MainActivity extends AppCompatActivity
                                 "45.807559", "15.897518","fluidic","12345678");
         id = db.insertSalon("Frizerski salon W", "Taborska 31, Zagreb", "frizerskisalonw@yahoo.com", "0912345444", "8-20","0",
                             "45.801492", "15.952285","wich","12345678");
+        id = db.insertSalon("Frizerski salon ona & on", "Domitrovićeva ulica 21-1, Zagreb", "fsoni@gmail.com", "012345678",
+                "9 - 20:30", "0", "45.820408", "15.888669", "onaion", "12345678");
+        id = db.insertSalon("ONA I ON", "Ul. Grada Mainza 19, Zagreb", "onaion@gmail.com", "013589765",
+                "8 - 22", "0", "45.812512", "15.952699", "fsonaion", "12345678");
+        id = db.insertSalon("Frizerski salon Smart", "A.T. Mimare 14", "fssmart@gmail.com", "013735438",
+                "8-20", "0", "45.809451", "15.891741", "smart", "12345678");
+        id = db.insertSalon("FRIZERSKI SALON ANDREA", "Ul. kneza Branimira, Zagreb", "fsandrea@yahoo.com", "0953988453",
+                "8 - 15", "0", "45.806156", "15.989840", "andrea", "12345678");
+        id = db.insertSalon("Frizerski studio Alter", "Ribnjak 18, Zagreb", "alter.studio@gmail.com", "0916765839", "8 - 22",
+                "0", "45.816751", "15.981491", "alter", "12345678");
+        id = db.insertSalon("Evelin", "Nova ves 72, Zagreb", "evelin.salon@gmail.com", "013675482", "8 - 20",
+                "0", "45.826501", "15.978745", "evelin", "12345678");
 
         db.close();
 

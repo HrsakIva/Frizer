@@ -36,5 +36,9 @@
     <string name="narudzbe">Appointments</string>
     <string name="vrijemeNarudzbe">Time:</string>
     <string name="uslugaNarudzbe">Service:</string>
+    <string name="telNumEmpty">Enter your phone number!</string>
+    <string name="userNameEmpty">Enter your username!</string>
+    <string name="nameEmpty">Enter your name!</string>
+    <string name="surnameEmpty">Enter your surname!</string>
 
 </resources>

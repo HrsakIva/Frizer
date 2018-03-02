@@ -147,14 +147,17 @@ public class SalonActivity extends AppCompatActivity {
 
                     String rating = c.getString(6);
                     float floatRating = Float.parseFloat(rating);
-                    floatRating = (floatRating+v)/2;
+                    float no_votes = Float.parseFloat(c.getString(11));
+                    floatRating = (floatRating+v);
+                    no_votes = no_votes + 1;
+                    float rating_final = floatRating/no_votes;
 
                     long id = Integer.parseInt(c.getString(0));
 
                     db.open();
-                    db.updateSalon(id,c.getString(1),c.getString(2), c.getString(3),c.getString(4),c.getString(5),Float.toString(floatRating),c.getString(7),c.getString(8),c.getString(9),c.getString(10));
+                    db.updateSalon(id,c.getString(1),c.getString(2), c.getString(3),c.getString(4),c.getString(5),Float.toString(floatRating),c.getString(7),c.getString(8),c.getString(9),c.getString(10), Float.toString(no_votes));
 
-                    ratingBar.setRating(floatRating);
+                    ratingBar.setRating(v);
                     ratingBar.setIsIndicator(true);
 
 
@@ -164,9 +167,15 @@ public class SalonActivity extends AppCompatActivity {
         else
         {
             rbStars.setIsIndicator(true);
-            String rating = c.getString(6);
-            float floatRating = Float.parseFloat(rating);
-            rbStars.setRating(floatRating);
+            float rating_number ;
+            if(Float.parseFloat(c.getString(11))==0)
+            {
+                rating_number=Float.parseFloat(c.getString(6))/ (Float.parseFloat(c.getString(11))+1);
+            }
+            else{
+                rating_number =Float.parseFloat(c.getString(6))/ (Float.parseFloat(c.getString(11)));
+            }
+            rbStars.setRating(rating_number);
 
         }
 

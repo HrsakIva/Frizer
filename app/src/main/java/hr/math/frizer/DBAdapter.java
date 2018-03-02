@@ -23,7 +23,7 @@ class DBAdapter {
 
     static final String DATABASE_NAME = "MyDB";
     static final String DATABASE_TABLE = "users";
-    static final int DATABASE_VERSION = 15;
+    static final int DATABASE_VERSION = 16;
 
     static final String DATABASE_CREATE =
             "create table users (_id integer primary key autoincrement, "
@@ -41,13 +41,14 @@ class DBAdapter {
     static final String KEY_LONGITUDE_SALON = "longitude";
     static final String KEY_USERNAME_SALON = "username";
     static final String KEY_PASSWORD_SALON = "password";
+    static final String KEY_NOVOTES_SALON = "votes";
 
     static final String DATABASE_TABLE_SALON = "salon";
 
     static final String DATABASE_CREATE_SALON =
             "create table salon (_id integer primary key autoincrement, "
                     + "name text not null, address text not null, email text not null, telnumber text not null, workhours text not null, rating text not null," +
-                    " lattitude text not null, longitude text not null, username text not null, password text not null);";
+                    " lattitude text not null, longitude text not null, username text not null, password text not null, votes text not null);";
 
 
     // --- table komentari ---
@@ -164,7 +165,7 @@ class DBAdapter {
     }
 
     public long insertSalon(String name, String address, String email, String telnumber, String workhours, String rating,
-                            String lattitude, String longitude, String username, String password)
+                            String lattitude, String longitude, String username, String password, String votes)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME_SALON, name);
@@ -177,6 +178,7 @@ class DBAdapter {
         initialValues.put(KEY_LONGITUDE_SALON, longitude);
         initialValues.put(KEY_USERNAME_SALON, username);
         initialValues.put(KEY_PASSWORD_SALON, password);
+        initialValues.put(KEY_NOVOTES_SALON, votes);
 
         return db.insert(DATABASE_TABLE_SALON, null, initialValues);
     }
@@ -236,7 +238,7 @@ class DBAdapter {
         return db.query(DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON, KEY_NAME_SALON,
                 KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON,
                 KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON,
-                KEY_USERNAME_SALON, KEY_PASSWORD_SALON}, null, null, null, null, null);
+                KEY_USERNAME_SALON, KEY_PASSWORD_SALON, KEY_NOVOTES_SALON}, null, null, null, null, null);
     }
 
     public Cursor getAllKomentar()
@@ -329,7 +331,7 @@ class DBAdapter {
                 db.query(true, DATABASE_TABLE_SALON, new String[] {KEY_ROWID_SALON,
                                 KEY_NAME_SALON, KEY_ADDRESS_SALON, KEY_EMAIL_SALON, KEY_TELNUMBER_SALON, KEY_WORKHOURS_SALON,
                                 KEY_RATING_SALON, KEY_LATTITUDE_SALON, KEY_LONGITUDE_SALON,
-                                KEY_USERNAME_SALON, KEY_PASSWORD_SALON}, KEY_ROWID + "=" + rowId, null,
+                                KEY_USERNAME_SALON, KEY_PASSWORD_SALON, KEY_NOVOTES_SALON}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -348,7 +350,7 @@ class DBAdapter {
     }
 
     public boolean updateSalon(long rowId, String name, String address, String email, String telnumber, String workhours,
-                               String rating, String lattitude, String longitude, String username, String password)
+                               String rating, String lattitude, String longitude, String username, String password, String votes)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_NAME_SALON, name);
@@ -361,6 +363,7 @@ class DBAdapter {
         args.put(KEY_LONGITUDE_SALON, longitude);
         args.put(KEY_USERNAME_SALON, username);
         args.put(KEY_PASSWORD_SALON, password);
+        args.put(KEY_NOVOTES_SALON, votes);
 
         return db.update(DATABASE_TABLE_SALON, args, KEY_ROWID_SALON + "=" + rowId, null) > 0;
     }

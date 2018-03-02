@@ -121,7 +121,15 @@ public class NearestSalons extends AppCompatActivity {
                         rating.setNumStars(5);
                         rating.setStepSize((float) 0.1);
                         rating.setIsIndicator(true);
-                        rating.setRating(Float.parseFloat(salon.getString(6)));
+                        float rating_number ;
+                        if(Float.parseFloat(salon.getString(11))==0)
+                        {
+                            rating_number=Float.parseFloat(salon.getString(6))/ (Float.parseFloat(salon.getString(11))+1);
+                        }
+                        else{
+                            rating_number =Float.parseFloat(salon.getString(6))/ (Float.parseFloat(salon.getString(11)));
+                        }
+                        rating.setRating(rating_number);
                         ll.addView(rating);
 
                         TextView tvAddress = new TextView(this);
